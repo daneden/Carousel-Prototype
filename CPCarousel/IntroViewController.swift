@@ -8,12 +8,27 @@
 
 import UIKit
 
-class IntroViewController: UIViewController {
+class IntroViewController: UIViewController, UIScrollViewDelegate {
 
+    @IBOutlet weak var tile1ImageView: UIImageView!
+    @IBOutlet weak var tile2ImageView: UIImageView!
+    @IBOutlet weak var tile3ImageView: UIImageView!
+    @IBOutlet weak var tile4ImageView: UIImageView!
+    @IBOutlet weak var tile5ImageView: UIImageView!
+    @IBOutlet weak var tile6ImageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    // Rotations: -10 to 10
+    // Size: 1.7 to 1
+    // Distance: 500 to 285
+    
+    func scrollViewDidScroll(scrollView: UIScrollView!) {
+        println("\(scrollView.contentOffset)")
     }
 
     override func didReceiveMemoryWarning() {
