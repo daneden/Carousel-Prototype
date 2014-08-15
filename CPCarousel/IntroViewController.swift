@@ -8,7 +8,7 @@
 
 import UIKit
 
-class IntroViewController: UIViewController, UIScrollViewDelegate {
+class IntroViewController: ViewController, UIScrollViewDelegate {
 
     // Create outlets for the image tiles
     @IBOutlet weak var tile1ImageView: UIImageView!
