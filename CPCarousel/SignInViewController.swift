@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignInViewController: ViewController, UIScrollViewDelegate, UIAlertViewDelegate {
+class SignInViewController: ViewController, UIScrollViewDelegate, UIAlertViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var signInButtonsView: UIView!
     @IBOutlet weak var signInFormScrollView: UIScrollView!
@@ -24,6 +24,8 @@ class SignInViewController: ViewController, UIScrollViewDelegate, UIAlertViewDel
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
 
         signInFormScrollView.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -34,11 +36,20 @@ class SignInViewController: ViewController, UIScrollViewDelegate, UIAlertViewDel
         navigationController.popViewControllerAnimated(true)
     }
     
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        if(emailTextField.isFirstResponder()) {
+            passwordTextField.becomeFirstResponder()
+        } else {
+            passwordTextField.resignFirstResponder()
+        }
+        return false
+    }
+    
     @IBAction func onSignInButtonTouch(sender: AnyObject) {
         var credentialsError = UIAlertView(title: "Error", message: "Please sign in with your Dropbox email address and password", delegate: self, cancelButtonTitle: "OK")
         
         // Check non-nil values
-        if(emailTextField.text == nil || passwordTextField.text == nil) {
+        if(emailTextField.text == "" || passwordTextField.text == "") {
             credentialsError.title = "Email and password required"
             credentialsError.show()
         } else {

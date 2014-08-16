@@ -13,6 +13,8 @@ class WelcomeViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var welcomeScrollView: UIScrollView!
     @IBOutlet weak var welcomePageControl: UIPageControl!
     @IBOutlet weak var continueFrameView: UIView!
+    @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var backupSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,16 +25,11 @@ class WelcomeViewController: UIViewController, UIScrollViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView!) {
         var offset = scrollView.contentOffset.x
         
-        // Set the page indicator
-        if((offset >= 0 && offset < 320) || offset < 0) {
-            welcomePageControl.currentPage = 0
-        } else if (offset >= 320 && offset < 640 ) {
-            welcomePageControl.currentPage = 1
-        } else if (offset >= 640 && offset < 960) {
-            welcomePageControl.currentPage = 2
-        } else if ((offset >= 960 && offset < 1280) || offset >= 1280) {
-            welcomePageControl.currentPage = 3
-        }
+        // Get the current page based on the scroll offset
+        var page : Int = Int(round(offset / 320))
+        
+        // Set the current page, so the dots will update
+        welcomePageControl.currentPage = page
     
         // Stage animation for the button that exits the welcome tutorial
         if (welcomePageControl.currentPage == 3) {
@@ -53,6 +50,16 @@ class WelcomeViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
+
+    @IBAction func onContinueButtonTouch(sender: AnyObject) {
+        if(backupSwitch.on == false) {
+            var error = UIAlertView(title: "Enable backup to conitnue", message: "Carousel works best when automatic backup is enabled.", delegate: self, cancelButtonTitle: "OK")
+            error.show()
+        } else {
+            performSegueWithIdentifier("welcomeToFeedSegue", sender: self)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
