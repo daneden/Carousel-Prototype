@@ -1,9 +1,13 @@
 # Carousel Prototype (Week 2 Homework)
 ## Hours spent:
-3
+4.5
 
 ## Stories completed
 - Intro screen
-- Sign in screen (and optionals)
-- Welcome/tutorial screens
+- Sign in screen (plus all optionals)
+- Welcome/tutorial screens (plus all optionals)
+- Image timeline
+- Settings
 
+## GIF
+![](https://raw.githubusercontent.com/daneden/Carousel-Prototype/master/Carousel-Prototype.gif)
