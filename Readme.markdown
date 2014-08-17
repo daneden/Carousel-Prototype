@@ -5,6 +5,7 @@
 ## Stories completed
 - Intro screen
 - Sign in screen (plus all optionals)
+- Create account screen
 - Welcome/tutorial screens (plus all optionals)
 - Image timeline
 - Settings
